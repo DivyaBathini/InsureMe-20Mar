@@ -39,18 +39,12 @@
       steps {
         sh 'docker push divyabathini14/insure-project:1.0'
                                      }
+            
              }
-       }
-    }
+         }
+   }
+}
+
+
               
-                    
-           
-       
-
-
-        
-          
-
-
-   
-
+                
