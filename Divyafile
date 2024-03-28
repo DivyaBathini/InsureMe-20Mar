@@ -1,29 +1,29 @@
-Pipeline {
-agent any
-  tools{
-    maven 'M2_HOME'
-       }
-  stages {
-   stage('Git  checkout') {
-     steps {
-       echo 'This is for cloning the gitrepo'
-       git branch: 'main', url: 'https://github.com/DivyaBathini/InsureMe-20mar.git'
-                          }
-           }
-   stage{'Create a Package') {
-     steps {
-       echo 'This will create a Package using maven'
-       sh 'mvn package'
-                         }
-           }
-
-   stages('Publish the HTML Reports') {
-    steps {
-         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'var/lib/jenkins/workspace/Insure-Project/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
-                     }
+pipeline {
+  agent any
+    tools{
+      maven 'M2_HOME'
           }
-   }
+   stages {
+    stage('Git checkout') {
+      steps {
+         echo 'This is for cloning the gitrepo'
+         git branch: 'main', url: 'https://github.com/cbabu85/InsureMe-20Mar.git'
+                          }
+            }
+    stage('Create a Package') {
+      steps {
+         echo 'This will create a package using maven'
+         sh 'mvn package'
+                             }
+            }
+
+    stage('Publish the HTML Reports') {
+      steps {
+          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/Insure-Project/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+                        }
+            }
 }
+
 
    
 
